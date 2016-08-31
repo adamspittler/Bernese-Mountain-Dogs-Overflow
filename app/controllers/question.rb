@@ -22,13 +22,20 @@ get '/questions/:id' do
   erb :'questions/show'
 end
 
+get '/questions/:id/edit' do
+  #get params from url
+  @question = Question.find(params[:id]) #define intstance variable for view
+  erb :'questions/edit' #show edit question view
+end
+
 put '/questions/:id' do
   halt(404, erb(:'404')) unless login?
-
-  @question.assign_attributes(params[:questions])
+  # binding.pry
+  @question = Question.find(params[:id])
+  @question.assign_attributes(params[:question])
 
   if @question.save
-    redirect "entries/#{@question.id}"
+    redirect "questions/#{@question.id}"
   else
     @errors = @question.errors.full_messages
     erb :'questions/edit'
@@ -37,7 +44,7 @@ end
 
 delete '/questions/:id' do
   halt(404, erb(:'404')) unless login?
-
+  @question = Question.find(params[:id])
   @question.destroy
-  redirect '/question'
+  redirect '/questions'
 end

@@ -4,19 +4,32 @@
   <span class="question-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@question.created_at)}." %></span>
 
   <p><%= @question.text %></p>
-  <% if current_user.id == @question.user_id %>
   <ul class="no-bullets no-padding mar-t-2">
-    <li class="pipe-separate left">
-      <a class="button" href="/questions/<%= @question.id %>/edit" >edit</a>
-    </li>
+    <% if current_user.id == @question.user_id %>
 
-    <li class="pipe-separate left">
-      <form method="post" action="/questions/<%= @question.id %>" class="inline">
-        <input type="hidden"  name="_method" value="delete">
-        <input type="submit" class="button" value="delete">
-      </form>
-    </li>
+      <li class="pipe-separate left">
+        <a class="button" href="/questions/<%= @question.id %>/edit" >edit</a>
+      </li>
+
+      <li class="pipe-separate left">
+        <form method="post" action="/questions/<%= @question.id %>" class="inline">
+          <input type="hidden"  name="_method" value="delete">
+          <input type="submit" class="button" value="delete">
+        </form>
+      </li>
+
+    <% end %>
+
+    <% if current_user.id != @question.user_id && login? %>
+
+      <li class="pipe-separate left">
+
+        <a class="button" href="/questions/<%= @question.id %>/answers/new">answer</a>
+
+      </li>
+
+    <% end %>
   </ul>
-  <% end %>
+
 
 </div>
