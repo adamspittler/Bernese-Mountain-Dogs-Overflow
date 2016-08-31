@@ -1,15 +1,16 @@
-<%if @errors %>
-  Error: <%= @errors %>
-<%end%>
+<div class="container">
+  <h2>Please login</h2>
 
-Please login</br>
+  <form method="post" action="/users/login">
+    <label for="username\">Username: </label><br>
+    <input type="text" name="username"><br>
 
-<form method="post" action="/login">
-  <label for="username">E-mail: </label>
-  <input type="text" name="username">
+    <label for="password">Password: </label><br>
+    <input type="password" name="password"><br><br>
 
-  <label for="password">Password: </label>
-  <input type="password" name="password">
+    <input class="button" type="submit" name="login" value="log in">
+  </form>
 
-  <input type="submit" name="login" value="log in">
-</form>
+  <%= erb :'_error' %>
+
+</div>

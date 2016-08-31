@@ -33,9 +33,19 @@ post '/users/login' do
     session[:user_id] = @user.id
     redirect '/'
   else
-    @errors = "Incorrect username and password combination"
+    @errors = ["Incorrect username and password combination"]
     erb :"users/login"
   end
+end
+
+get '/users/logout' do
+  session.clear
+  redirect '/'
+end
+
+get '/users/:id' do
+  @user= User.find(params[:id])
+  erb :'/users/show'
 end
 
 
