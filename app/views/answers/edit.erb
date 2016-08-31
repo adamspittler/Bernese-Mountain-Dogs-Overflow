@@ -1,0 +1,17 @@
+<% if current_user.id == @answer.user_id %>
+<div class="container">
+  <form method="post" action="/answers">
+    <input type="hidden" method="put" value='put'>
+    <label for="answer">Edit Your Answer:</label><br>
+    <textarea rows="10" cols="50" name="answer[text]"><%=@answer.text%></textarea><br><br>
+    <input type="hidden" name="answer[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="answer[question_id]" value="<%= @question.id %>">
+
+    <input type="submit" value="Answer" class="button">
+</div>
+
+<%= erb :'_error' %>
+
+<% else %>
+  <p>You cannot view this page GET OUT</p>
+<% end %>

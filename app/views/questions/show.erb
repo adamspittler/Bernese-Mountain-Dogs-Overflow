@@ -4,8 +4,9 @@
   <span class="question-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@question.created_at)}." %></span>
 
   <p><%= @question.text %></p>
+
+  <% if current_user.id == @question.user_id %>
   <ul class="no-bullets no-padding mar-t-2">
-    <% if current_user.id == @question.user_id %>
 
       <li class="pipe-separate left">
         <a class="button" href="/questions/<%= @question.id %>/edit" >edit</a>
@@ -29,6 +30,19 @@
       </li>
 
     <% end %>
+  </ul>
+
+
+  <div class="comments">
+    <p> add comments here</p>
+  </div>
+
+
+  <h2> Answers </h2>
+  <ul>
+    <% @question.answers.each do |answer| %>
+    <li><%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%><br>add comments for answers here</li><br><br>
+      <% end %>
   </ul>
 
 
