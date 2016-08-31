@@ -1,3 +1,9 @@
 <div class="container">
   <h2> All Questions </h2>
+
+  <ul>
+    <% @questions.each do |question| %>
+      <li><a class="link" href="/questions/<%=question.id%>"><%=question.title%></a><br> Asked on <%=question.created_at%> by <a class="link" href="/users/<%=question.user.id%>"><%=question.user.username%></a></li><br>
+    <% end %>
+  </ul>
 </div>

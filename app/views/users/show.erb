@@ -1,25 +1,22 @@
 <div class="container">
-  <h2> <%= @user.username %>'s Page </h2>
+  <h2 id="profile_name"> <%= @user.username %>'s Page </h2><br>
 
-  <h3> Questions </h3>
-  <ul>
-    <% @user.questions.each do |question| %>
-      <li><%=question.title%></li>
-      <% end %>
-  </ul>
+  <h3> Questions You Have Asked </h3>
+  <div class="question_container">
+    <ul>
+      <% @user.questions.each do |question| %>
+        <li><a class="link" href="/questions/<%=question.id%>"><%=question.title%></a></li>
+        <% end %>
+    </ul>
+  </div>
+  <h3> Questions You Have Answered </h3>
 
-  <h3> Answers </h3>
-  <ul>
-    <% @user.answers.each do |answer| %>
-      <li><%=answer.text%></li>
-      <% end %>
-  </ul>
+  <div class="answer_container">
+    <ul>
+      <% @user.answers.each do |answer| %>
+        <li><a class="link" href="/questions/<%=answer.question.id%>"><%=answer.question.title%></a></li>
+        <% end %>
+    </ul>
+  </div>
 
-  <h3> Comments </h3>
-  <ul>
-    <% @user.comments.each do |comment| %>
-      <li><%=comment.text%></li>
-      <% end %>
-  </ul>
-
-</div>
+ </div>
