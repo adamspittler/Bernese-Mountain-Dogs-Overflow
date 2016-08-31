@@ -1,0 +1,10 @@
+<div class="container">
+  <form method="post" action="/answers">
+    <label for="answer">Your Answer:</label><br>
+    <textarea rows="10" cols="50" name="answer[text]"></textarea><br><br>
+    <input type="hidden" name="answer[user_id]" value="<%= current_user.id %>">
+
+    <input type="submit" value="Answer" class="button">
+</div>
+
+<%= erb :'_error' %>
