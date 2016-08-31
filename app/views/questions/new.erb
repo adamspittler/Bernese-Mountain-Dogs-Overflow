@@ -7,9 +7,9 @@
     <br><br>
 
     <label for="body-textarea" class="form_text_block">Text:</label>
-    <textarea id="body-textarea" name="question[text]"><%= @question.try(:text) %></textarea>
+    <textarea rows="10" cols="50" id="body-textarea" name="question[text]"><%= @question.try(:text) %></textarea>
 
-    <input type="hidden" name="question[user_id]" value="<%= session[:user_id] %>"  >
+    <input type="hidden" name="question[user_id]" value="<%= session[:user_id] %>"  ><br><br>
 
     <input type="submit" class="button" value="Publish">
   </form>
