@@ -41,7 +41,19 @@
   <h2> Answers </h2>
   <ul>
     <% @question.answers.each do |answer| %>
-    <li><%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%><br>add comments for answers here</li><br><br>
+    <li><%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%><br>add comments for answers here</li>
+      <% if current_user.id == answer.user_id %>
+        <ul>
+          <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li>
+          <li class="link">
+            <form method="post" action="/answers/<%= answer.id %>" class="inline">
+              <input type="hidden"  name="_method" value="delete">
+              <input type="submit" class="button" value="delete">
+            </form>
+          </li>
+        </ul>
+        <% end %>
+    <br><br>
       <% end %>
   </ul>
 

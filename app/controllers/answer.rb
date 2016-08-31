@@ -24,3 +24,24 @@ get '/answers/:id/edit' do
   @answer= Answer.find(params[:id])
   erb :'/answers/edit'
 end
+
+put '/answers/:id' do
+  halt(404, erb(:'404')) unless login?
+
+  @answer = Answer.find(params[:id])
+  @answer.assign_attributes(params[:answer])
+
+  if @answer.save
+    redirect "questions/#{@answer.question_id}"
+  else
+    @errors = @answer.errors.full_messages
+    erb :'answers/edit'
+  end
+end
+
+delete '/answers/:id' do
+  require_user
+  @answer = Answer.find(params[:id])
+  @answer.destroy
+  redirect "/questions/#{@answer.question_id}"
+end
