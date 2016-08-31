@@ -1,0 +1,42 @@
+.navbar {
+  padding-top: 5px;
+  height: 65px;
+  background-color: #4E9CAF;
+}
+
+#home_icon {
+  width: 50px;
+  height: 50px;
+}
+
+.home {
+  padding-left: 25px;
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+}
+
+.home_row {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 70%;
+  text-align: right;
+}
+
+.button{
+  text-decoration: none;
+  display: inline-block;
+  background: #4E9CAF;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+
+}
+
+#web_title {
+  font-family:"Impact";
+  font-size: 1.5em;
+  letter-spacing: 0.15em;
+  padding-left: 10px;
+}

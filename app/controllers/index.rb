@@ -1,4 +1,4 @@
 get '/' do
-  erb :'/'
+  erb :'index'
 end
 

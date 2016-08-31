@@ -19,6 +19,24 @@
   <title></title>
 </head>
 <body>
+  <nav class="navbar">
+    <div class="home">
+      <a href="/"><img id="home_icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Paw-print.svg/2000px-Paw-print.svg.png"></a>
+      <span id="web_title">Doge Overfloh</span>
+    </div>
+
+    <div class="home_row">
+      <% if current_user %>
+        <a class="button" href="/users/<%=current_user.id%>"><%= current_user.username%></a>
+        <a class="button" href="/questions/new">Ask a Question</a>
+        <a class="button" href="/users/logout">Logout</a>
+      <% else %>
+        <a class="button" href="/users/login">Login</a>
+        <a class="button" href="/users/new">Create Account</a>
+      <% end %>
+
+    </div>
+  </nav>
   <%= yield %>
 </body>
 </html>
