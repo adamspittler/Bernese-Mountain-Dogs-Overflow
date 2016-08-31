@@ -1,0 +1,25 @@
+<% if @errors %>
+  <ul>
+  <% @errors.each do |error| %>
+      <li><%= error %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+ Please create an account</br>
+
+ <form method="post" action="/users">
+  <label for="username">Username: </label>
+  <input type="text" name="user[username]"></br>
+
+  <label for="email">E-mail: </label>
+  <input type="text" name="user[email]"></br>
+
+  <label for="breed">Breed: </label>
+  <input type="text" name="user[breed]"></br>
+
+  <label for="password">Password: </label>
+  <input type="password" name="user[password]"></br>
+
+  <input type="submit" name="register" value="create_account">
+</form>
