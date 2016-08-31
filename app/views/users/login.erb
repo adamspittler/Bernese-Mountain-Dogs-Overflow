@@ -1,0 +1,15 @@
+<%if @errors %>
+  Error: <%= @errors %>
+<%end%>
+
+Please login</br>
+
+<form method="post" action="/login">
+  <label for="username">E-mail: </label>
+  <input type="text" name="username">
+
+  <label for="password">Password: </label>
+  <input type="password" name="password">
+
+  <input type="submit" name="login" value="log in">
+</form>
