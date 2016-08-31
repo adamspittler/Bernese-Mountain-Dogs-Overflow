@@ -11,8 +11,9 @@ end
 
 post '/answers' do
   answer=Answer.new(params[:answer])
+  question=Question.find(answer.question_id)
   if answer.save
-    redirect '/'
+    redirect "/questions/#{question.id}"
   else
     @error=answer.errors.full_messages
     erb :'/answers/create'
