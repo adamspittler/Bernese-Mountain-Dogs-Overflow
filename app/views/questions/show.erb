@@ -5,7 +5,7 @@
 
   <p><%= @question.text %></p>
 
-  <% if current_user.id == @question.user_id %>
+  <% if current_user && current_user.id == @question.user_id %>
   <ul class="no-bullets no-padding mar-t-2">
 
       <li class="pipe-separate left">
@@ -21,7 +21,7 @@
 
     <% end %>
 
-    <% if current_user.id != @question.user_id && login? %>
+    <% if current_user && current_user.id != @question.user_id %>
 
       <li class="pipe-separate left">
 
