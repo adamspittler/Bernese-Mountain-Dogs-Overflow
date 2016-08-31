@@ -15,8 +15,10 @@
   <label for="title-input" class="block">Title:</label>
   <input id="title-input" name="question[title]" type="text" value="<%= @question.try(:title) %>" class="block">
 
-  <label for="body-textarea" class="block">Body:</label>
+  <label for="body-textarea" class="block">Text:</label>
   <textarea id="body-textarea" name="question[text]" class="block"><%= @question.try(:text) %></textarea>
+
+    <input type="hidden" name="question[user_id]" value="<%= session[:user_id] %>"  >
 
   <input type="submit" value="Update" class="block">
 </form>

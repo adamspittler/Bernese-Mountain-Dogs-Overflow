@@ -1,3 +1,3 @@
-get '/answers/:id/new' do
+get '/questions/:id/answers/new' do
   erb :'/answers/create'
 end
