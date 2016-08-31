@@ -14,7 +14,7 @@
   <div class="answer_container">
     <ul>
       <% @user.answers.each do |answer| %>
-        <li><a class="link" href="/questions/<%=answer.question.id%>"><%=answer.question.title%></a></li>
+        <li>You Answered: "<%=answer.text%>"<br> on: <a class="link" href="/questions/<%=answer.question.id%>"><%=answer.question.title%></a></li>
         <% end %>
     </ul>
   </div>
