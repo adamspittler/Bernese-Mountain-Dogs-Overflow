@@ -1,3 +1,7 @@
+body {
+  background-color: #CBDDE2;
+}
+
 .container {
   width: 60%;
   display: block;
@@ -39,6 +43,19 @@
   border-radius: 5px;
   color: black;
 
+}
+
+li {
+  list-style: none;
+}
+
+.link {
+  color: #0A5CAC;
+}
+
+#profile_name {
+  font-family: "Impact";
+  letter-spacing: 0.05em;
 }
 
 #web_title {
