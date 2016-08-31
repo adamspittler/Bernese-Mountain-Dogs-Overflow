@@ -4,7 +4,11 @@ get '/questions' do
 end
 
 get '/questions/new' do
-  erb :'questions/new'
+  if current_user
+    erb :'questions/new'
+  else
+    redirect '/users/login'
+  end
 end
 
 post '/questions' do

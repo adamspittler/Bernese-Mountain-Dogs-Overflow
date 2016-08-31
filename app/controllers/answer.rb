@@ -1,6 +1,12 @@
 get '/questions/:id/answers/new' do
   @question= Question.find(params[:id])
-  erb :'/answers/create'
+  if current_user && current_user.id != @question.user_id
+    erb :'/answers/create'
+  elsif current_user
+    redirect '/questions'
+  else
+    redirect 'users/login'
+  end
 end
 
 post '/answers' do
