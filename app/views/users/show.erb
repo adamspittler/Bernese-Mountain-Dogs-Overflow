@@ -1,0 +1,25 @@
+<div class="container">
+  <h2> <%= @user.username %>'s Page </h2>
+
+  <h3> Questions </h3>
+  <ul>
+    <% @user.questions.each do |question| %>
+      <li><%=question.title%></li>
+      <% end %>
+  </ul>
+
+  <h3> Answers </h3>
+  <ul>
+    <% @user.answers.each do |answer| %>
+      <li><%=answer.text%></li>
+      <% end %>
+  </ul>
+
+  <h3> Comments </h3>
+  <ul>
+    <% @user.comments.each do |comment| %>
+      <li><%=comment.text%></li>
+      <% end %>
+  </ul>
+
+</div>

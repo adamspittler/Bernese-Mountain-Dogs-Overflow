@@ -1,25 +1,23 @@
-<% if @errors %>
-  <ul>
-  <% @errors.each do |error| %>
-      <li><%= error %></li>
-  <% end %>
-  </ul>
-<% end %>
+<div class="container">
 
- Please create an account</br>
+   <h2>Please create an account</h2>
 
- <form method="post" action="/users">
-  <label for="username">Username: </label>
-  <input type="text" name="user[username]"></br>
+   <form method="post" action="/users">
+    <label for="username">Username: </label><br>
+    <input type="text" name="user[username]"></br>
 
-  <label for="email">E-mail: </label>
-  <input type="text" name="user[email]"></br>
+    <label for="email">E-mail: </label><br>
+    <input type="text" name="user[email]"></br>
 
-  <label for="breed">Breed: </label>
-  <input type="text" name="user[breed]"></br>
+    <label for="breed">Breed: </label><br>
+    <input type="text" name="user[breed]"></br>
 
-  <label for="password">Password: </label>
-  <input type="password" name="user[password]"></br>
+    <label for="password">Password: </label><br>
+    <input type="password" name="user[password]"></br><br>
 
-  <input type="submit" name="register" value="create_account">
-</form>
+    <input class="button" type="submit" name="register" value="Create Account">
+  </form>
+
+    <%= erb :'_error' %>
+
+</div>

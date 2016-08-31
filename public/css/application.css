@@ -1,0 +1,49 @@
+.container {
+  width: 60%;
+  display: block;
+  margin: auto;
+}
+
+.navbar {
+  padding-top: 5px;
+  height: 65px;
+  background-color: #4E9CAF;
+}
+
+#home_icon {
+  padding-top: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.home {
+  padding-left: 25px;
+  display: inline-block;
+  vertical-align: top;
+  width: 25%;
+}
+
+.home_row {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 70%;
+  text-align: right;
+}
+
+.button{
+  text-decoration: none;
+  display: inline-block;
+  background: #4E9CAF;
+  padding: 8px;
+  text-align: center;
+  border-radius: 5px;
+  color: black;
+
+}
+
+#web_title {
+  font-family:"Impact";
+  font-size: 1.5em;
+  letter-spacing: 0.15em;
+  padding-left: 10px;
+}
