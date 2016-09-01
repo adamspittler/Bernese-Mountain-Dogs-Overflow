@@ -40,6 +40,7 @@
     <% end %>
     </ul>
 
+    <div class="answer_form"></div>
 
     <div class="comments">
       <ul>
@@ -60,13 +61,13 @@
     <li class="listing">
 
     <div class="the_vote_buttons">
-    <div class="upvote">
+    <div class="answer_upvote">
       <a href="/answers/<%=answer.id%>/upvote"><img class="vote_button" src="/images/upvote.jpg"></a>
     </div>
     <div class="vote_count">
       <%=answer.total_votes%>
     </div>
-    <div class="downvote">
+    <div class="answer_downvote">
       <a href="/answers/<%=answer.id%>/downvote"><img class="vote_button" src="/images/downvote.jpg"></a>
     </div>
   </div>
