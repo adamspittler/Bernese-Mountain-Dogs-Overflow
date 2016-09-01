@@ -45,6 +45,8 @@ end
 
 get '/users/:id' do
   @user= User.find(params[:id])
+  @best_answer_count = 0
+  @user.answers.each { |answer| @best_answer_count += 1 if answer.best }
   erb :'/users/show'
 end
 

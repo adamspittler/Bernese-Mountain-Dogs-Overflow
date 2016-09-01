@@ -1,5 +1,6 @@
 <div class="container">
   <h2 id="profile_name"> <%= @user.username %>'s Page </h2><br>
+  <div id="number_of_best_answers"><%= @best_answer_count %> best answers</div>
 
   <h3> Questions <%=@user.username%> Has Asked </h3>
   <div class="question_container">
@@ -14,7 +15,7 @@
   <div class="answer_container">
     <ul>
       <% @user.answers.each do |answer| %>
-        <li>You Answered: "<%=answer.text%>"<br> on: <a class="link" href="/questions/<%=answer.question.id%>"><%=answer.question.title%></a>
+        <li>You Answered: "<%=answer.text%>"<br> on: <a class="link" href="/questions/<%=answer.question.id%>"><%=answer.question.title%></a><br><br>
         </li>
       <% end %>
     </ul>
