@@ -7,8 +7,22 @@ $(document).ready(function(){
   })
   .done(function(response){
     $(event.target).hide();
-    $('.comments').prepend(response);
-
+    $('.answer_form').prepend(response);
   });
  });
+
+ $('.answer_form').on("submit", "form", function(event) {
+    event.preventDefault();
+    $.ajax({
+      method: 'post',
+      url: '/answers',
+      data: $(event.target).serialize()
+
+    }).done(function(response){
+      $('#answer_list').append(response);
+      $(event.target).hide();
+    });
+  });
+
+
 });

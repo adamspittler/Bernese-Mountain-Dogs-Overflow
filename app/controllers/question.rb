@@ -24,7 +24,6 @@ end
 get '/questions/:id' do
   @question = Question.find(params[:id])
   @best_values = @question.answers.map { |answer| answer.best }
-  p @best_values
   erb :'questions/show'
 end
 
@@ -40,7 +39,7 @@ get '/questions/:id/answers/new' do
 end
 
 get '/questions/:id/upvote' do
-  require_user
+  # require_user
   question=Question.find(params[:id])
   vote= Vote.create(user_id: current_user.id, value: 1, votable_type: "Question", votable_id: params[:id])
 
@@ -52,7 +51,7 @@ get '/questions/:id/upvote' do
 end
 
 get '/questions/:id/downvote' do
-  require_user
+  # require_user
   question=Question.find(params[:id])
   vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Question", votable_id: params[:id])
   # binding.pry
