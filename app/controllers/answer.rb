@@ -32,16 +32,27 @@ end
 
 get '/answers/:id/upvote' do
   require_user
-  question_id= Answer.find(params[:id]).question.id
+  answer=Answer.find(params[:id])
+  question_id= answer.question.id
+
   vote= Vote.create(user_id: current_user.id, value: 1, votable_type: "Answer", votable_id: params[:id])
-  redirect "/questions/#{question_id}"
+  if request.xhr?
+    "#{answer.total_votes}"
+  else
+    redirect "/questions/#{question_id}"
+  end
 end
 
 get '/answers/:id/downvote' do
   require_user
-  question_id= Answer.find(params[:id]).question.id
+  answer=Answer.find(params[:id])
+  question_id= answer.question.id
   vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Answer", votable_id: params[:id])
-  redirect "/questions/#{question_id}"
+  if request.xhr?
+    "#{answer.total_votes}"
+  else
+    redirect "/questions/#{question_id}"
+  end
 end
 
 put '/answers/:id' do
