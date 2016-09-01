@@ -40,11 +40,13 @@ get '/questions/:id/answers/new' do
 end
 
 get '/questions/:id/upvote' do
+  require_user
   vote= Vote.create(user_id: current_user.id, value: 1, votable_type: "Question", votable_id: params[:id])
   redirect "/questions/#{params[:id]}"
 end
 
 get '/questions/:id/downvote' do
+  require_user
   vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Question", votable_id: params[:id])
   redirect "/questions/#{params[:id]}"
 end

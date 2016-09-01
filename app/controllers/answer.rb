@@ -27,12 +27,14 @@ get '/answers/:id/edit' do
 end
 
 get '/answers/:id/upvote' do
+  require_user
   question_id= Answer.find(params[:id]).question.id
   vote= Vote.create(user_id: current_user.id, value: 1, votable_type: "Answer", votable_id: params[:id])
   redirect "/questions/#{question_id}"
 end
 
 get '/answers/:id/downvote' do
+  require_user
   question_id= Answer.find(params[:id]).question.id
   vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Answer", votable_id: params[:id])
   redirect "/questions/#{question_id}"
