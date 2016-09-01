@@ -5,68 +5,93 @@
 
   <p><%= @question.text %></p>
 
-  <% if current_user && current_user.id == @question.user_id %>
-  <ul class="no-bullets no-padding mar-t-2">
+  <div class="the_vote_buttons">
+    <div class="upvote">
+      <a href="/questions/<%=@question.id%>/upvote"><img class="vote_button" src="http://alextass.com/wp-content/uploads/2015/05/Dog-happy-puppy-tongue-logo-design-symbol-icon-by-Alex-Tass.jpg"></a>
+    </div>
+    <div class="vote_count">
+      <%=@question.votes.length%>
+    </div>
+    <div class="upvote">
+      <a href="/questions/<%=@question.id%>/downvote"><img class="vote_button" src="http://a1.dspncdn.com/media/692x/63/88/75/638875b8d26a2b3277caff4cf3aec97b.jpg"></a>
+    </div>
+  </div>
 
-      <li class="pipe-separate left">
-        <a class="button" href="/questions/<%= @question.id %>/edit" >edit</a>
-      </li>
+  <div class="question_field">
+    <ul class="no-bullets no-padding mar-t-2">
+      <% if current_user && current_user.id == @question.user_id %>
 
-      <li class="pipe-separate left">
-        <form method="post" action="/questions/<%= @question.id %>" class="inline">
-          <input type="hidden"  name="_method" value="delete">
-          <input type="submit" class="button" value="delete">
-        </form>
-      </li>
+        <li class="pipe-separate left">
+          <a class="button" href="/questions/<%= @question.id %>/edit" >edit</a>
+        </li><br>
 
-    <% end %>
-
-    <% if current_user && current_user.id != @question.user_id %>
-
-      <li class="pipe-separate left">
-
-        <a class="button" href="/questions/<%= @question.id %>/answers/new">answer</a>
-
-      </li>
-
-    <% end %>
-  </ul>
-
-
-  <div class="comments">
-    <ul>
-      <% @question.comments.each do |comment| %>
-        <li><%=comment.text%><br> By: <a class="link" href="/users/<%=comment.user.id%>"><%=comment.user.username%></a> on <%=long_form_date(comment.created_at)%></li><br>
+        <li class="pipe-separate left">
+          <form method="post" action="/questions/<%= @question.id %>" class="inline">
+            <input type="hidden"  name="_method" value="delete">
+            <input type="submit" class="button" value="delete">
+          </form>
+        </li>
       <% end %>
+
+      <% if current_user && current_user.id != @question.user_id %>
+        <li class="pipe-separate left">
+          <a class="button" href="/questions/<%= @question.id %>/answers/new">answer</a>
+        </li>
+    <% end %>
     </ul>
-    <a class="button" href="/questions/<%=@question.id%>/comment/new">Comment</a>
+
+
+    <div class="comments">
+      <ul>
+        <% @question.comments.each do |comment| %>
+          <li class="listing"><%=comment.text%><br> By: <a class="link" href="/users/<%=comment.user.id%>"><%=comment.user.username%></a> on <%=long_form_date(comment.created_at)%></li><br>
+        <% end %>
+      </ul>
+      <a class="button some_margin" href="/questions/<%=@question.id%>/comment/new">Comment</a>
+    </div>
   </div>
 
 
   <h2> Answers </h2>
   <ul>
     <% @question.answers.each do |answer| %>
+    <div class="the_vote_buttons">
+    <div class="upvote">
+      <a href="/answers/<%=answer.id%>/upvote"><img class="vote_button" src="http://alextass.com/wp-content/uploads/2015/05/Dog-happy-puppy-tongue-logo-design-symbol-icon-by-Alex-Tass.jpg"></a>
+    </div>
+    <div class="vote_count">
+      <%=answer.votes.length%>
+    </div>
+    <div class="upvote">
+      <a href="/answers/<%=answer.id%>/downvote"><img class="vote_button" src="http://a1.dspncdn.com/media/692x/63/88/75/638875b8d26a2b3277caff4cf3aec97b.jpg"></a>
+    </div>
+  </div>
 
-    <li><%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%>
+    <div class="question_field">
+    <li class="listing"><%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%>
       <% if current_user.id == answer.user_id %>
         <ul>
-          <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li>
+          <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li><br>
           <li class="link">
             <form method="post" action="/answers/<%= answer.id %>" class="inline">
             <input type="hidden"  name="_method" value="delete">
             <input type="submit" class="button" value="delete">
             </form></li>
         </ul>
-          <br><br>
+        <% end %>
+      <br><br>
         <ul>
           <% answer.comments.each do |comment| %>
-            <li><%=comment.text%><br> By: <a class="link" href="/users/<%=comment.user.id%>"><%=comment.user.username%></a> on <%=long_form_date(comment.created_at)%></li><br>
+            <li class="listing"><%=comment.text%><br> By: <a class="link" href="/users/<%=comment.user.id%>"><%=comment.user.username%></a> on <%=long_form_date(comment.created_at)%></li><br>
           <% end %>
         </ul>
-      <% end %>
-
-    <a class="button" href="/answers/<%=answer.id%>/comment/new">Comment</a><br><br>
-
+      <br>
+    <%if !answer.comments.empty? %>
+      <a class="button some_margin" href="/answers/<%=answer.id%>/comment/new">Comment</a>
+    <br><br>
+    <% end %>
+      </li><br>
+      </div>
     <% end %>
   </ul>
 
