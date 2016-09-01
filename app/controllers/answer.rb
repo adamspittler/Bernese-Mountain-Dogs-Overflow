@@ -16,6 +16,9 @@ end
 post '/answers' do
   answer=Answer.new(params[:answer])
   question=Question.find(answer.question_id)
+  if request.xhr?
+    answer
+  end
   if answer.save
     redirect "/questions/#{question.id}"
   else
