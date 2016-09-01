@@ -1,7 +1,7 @@
 <div class="container">
   <h2 id="profile_name"> <%= @user.username %>'s Page </h2><br>
 
-  <h3> Questions You Have Asked </h3>
+  <h3> Questions <%=@user.username%> Has Asked </h3>
   <div class="question_container">
     <ul>
       <% @user.questions.each do |question| %>
@@ -9,7 +9,7 @@
         <% end %>
     </ul>
   </div>
-  <h3> Questions You Have Answered </h3>
+  <h3> Questions <%=@user.username%> Has Answered </h3>
 
   <div class="answer_container">
     <ul>
