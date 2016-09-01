@@ -53,8 +53,14 @@ end
 
 get '/questions/:id/downvote' do
   require_user
+  question=Question.find(params[:id])
   vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Question", votable_id: params[:id])
-  redirect "/questions/#{params[:id]}"
+  # binding.pry
+  if request.xhr?
+    "#{question.total_votes}"
+  else
+    redirect "/questions/#{params[:id]}"
+  end
 end
 
 put '/questions/:id' do
