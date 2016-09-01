@@ -32,6 +32,21 @@ get '/questions/:id/edit' do
   erb :'questions/edit' #show edit question view
 end
 
+get '/questions/:id/answers/new' do
+  @question= Question.find(params[:id])
+  erb :'/answers/create'
+end
+
+get '/questions/:id/upvote' do
+  vote= Vote.create(user_id: current_user.id, value: 1, votable_type: "Question", votable_id: params[:id])
+  redirect "/questions/#{params[:id]}"
+end
+
+get '/questions/:id/downvote' do
+  vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Question", votable_id: params[:id])
+  redirect "/questions/#{params[:id]}"
+end
+
 put '/questions/:id' do
   halt(404, erb(:'404')) unless login?
   # binding.pry

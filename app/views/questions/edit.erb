@@ -1,3 +1,4 @@
+<div class="container">
 <h1>Revise your dog-ponderings ...</h1>
 
 <% if @errors %>
@@ -12,13 +13,14 @@
 <form method="post" action="/questions/<%= @question.id %>">
   <input type="hidden" name="_method" value="put">
 
-  <label for="title-input" class="block">Title:</label>
-  <input id="title-input" name="question[title]" type="text" value="<%= @question.try(:title) %>" class="block">
+  <label for="title-input" class="block">Title:</label><br>
+  <input id="title-input" name="question[title]" type="text" value="<%= @question.try(:title) %>" class="block"><br>
 
-  <label for="body-textarea" class="block">Text:</label>
-  <textarea id="body-textarea" name="question[text]" class="block"><%= @question.try(:text) %></textarea>
+  <label for="body-textarea" class="block">Text:</label><br>
+  <textarea id="body-textarea" rows="10" cols="50" name="question[text]" class="block"><%= @question.try(:text) %></textarea><br>
 
     <input type="hidden" name="question[user_id]" value="<%= session[:user_id] %>"  >
 
-  <input type="submit" value="Update" class="block">
+  <input type="submit" value="Update" class="button">
 </form>
+</div>

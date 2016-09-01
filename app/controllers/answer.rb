@@ -26,6 +26,18 @@ get '/answers/:id/edit' do
   erb :'/answers/edit'
 end
 
+get '/answers/:id/upvote' do
+  question_id= Answer.find(params[:id]).question.id
+  vote= Vote.create(user_id: current_user.id, value: 1, votable_type: "Answer", votable_id: params[:id])
+  redirect "/questions/#{question_id}"
+end
+
+get '/answers/:id/downvote' do
+  question_id= Answer.find(params[:id]).question.id
+  vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Answer", votable_id: params[:id])
+  redirect "/questions/#{question_id}"
+end
+
 put '/answers/:id' do
   halt(404, erb(:'404')) unless login?
 
@@ -46,3 +58,4 @@ delete '/answers/:id' do
   @answer.destroy
   redirect "/questions/#{@answer.question_id}"
 end
+
