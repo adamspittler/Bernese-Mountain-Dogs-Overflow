@@ -43,7 +43,7 @@
     <div class="answer_form"></div>
 
     <div class="comments">
-      <ul>
+      <ul id="question_comment_list">
         <% @question.comments.each do |comment| %>
           <%= erb :'_comment_display', locals: { comment: comment } %>
         <% end %>
