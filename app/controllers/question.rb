@@ -23,6 +23,8 @@ end
 
 get '/questions/:id' do
   @question = Question.find(params[:id])
+  @best_values = @question.answers.map { |answer| answer.best }
+  p @best_values
   erb :'questions/show'
 end
 

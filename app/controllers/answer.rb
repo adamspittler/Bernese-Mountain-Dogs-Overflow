@@ -59,3 +59,24 @@ delete '/answers/:id' do
   redirect "/questions/#{@answer.question_id}"
 end
 
+get '/answers/:id/best' do
+  require_user
+  @answer = Answer.find(params[:id])
+  @question = Question.find(@answer.question_id)
+  question_answers = @question.answers
+  best_values = question_answers.map { |answer| answer.best }
+
+  if current_user.id == @question.user_id
+    if best_values.exclude?(true)
+      @answer.best = true
+        if @answer.save
+          redirect "/questions/#{@answer.question_id}"
+        end
+    end
+  else
+    @errors = ["Could not mark as best answer"]
+  end
+
+end
+
+

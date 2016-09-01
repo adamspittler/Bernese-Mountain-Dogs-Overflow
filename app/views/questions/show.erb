@@ -54,7 +54,7 @@
 
   <h2> Answers </h2>
   <ul>
-    <% @question.answers.each do |answer| %>
+    <% @question.answers.sort_by{ |answer| answer.best ? 0 : 1}.each do |answer| %>
     <div class="the_vote_buttons">
     <div class="upvote">
       <a href="/answers/<%=answer.id%>/upvote"><img class="vote_button" src="http://alextass.com/wp-content/uploads/2015/05/Dog-happy-puppy-tongue-logo-design-symbol-icon-by-Alex-Tass.jpg"></a>
@@ -68,7 +68,18 @@
   </div>
 
     <div class="question_field">
+      <% if answer.best %>
+        <p>Best Answer!</p><br>
+      <% end %>
     <li class="listing"><%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%>
+
+      <% if current_user.id == @question.user_id && @best_values.exclude?(true) %>
+
+      <a class="button some_margin" href="/answers/<%=answer.id %>/best">Mark as best answer</a>
+
+      <% end %>
+
+
       <% if current_user.id == answer.user_id %>
         <ul>
           <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li><br>
@@ -94,5 +105,7 @@
       </div>
     <% end %>
   </ul>
+
+  <%= erb :'_error' %>
 
 </div>
