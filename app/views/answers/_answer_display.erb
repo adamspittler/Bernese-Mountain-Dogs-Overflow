@@ -30,7 +30,9 @@
       <% if current_user && current_user.id == answer.user_id %>
         <ul class="some_padding">
           <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li><br>
-          <li class="link">
+
+            <div class="answer_editing"></div>
+            <li class="link">
             <form method="post" action="/answers/<%= answer.id %>" class="inline">
             <input type="hidden"  name="_method" value="delete">
             <input type="submit" class="button" value="delete">
@@ -38,14 +40,15 @@
         </ul>
         <% end %>
 
-        <ul class="some_padding">
+        <ul id="answer_comment_list" class="some_padding">
           <% answer.comments.each do |comment| %>
             <%= erb :'_comment_display', locals: {comment: comment }%>
           <% end %>
         </ul>
       <br>
     <%if !answer.comments.empty? %>
-      <a class="button some_margin" href="/answers/<%=answer.id%>/comment/new">Comment</a>
+      <div id="answer_comment_form_placeholder"></div>
+      <a id="answer_comment_button" class="button some_margin" href="/answers/<%=answer.id%>/comment/new">Comment</a>
     <br><br>
     <% end %>
       </div>
