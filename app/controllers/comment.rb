@@ -1,22 +1,34 @@
 get '/questions/:id/comment/new' do
   require_user
   @question= Question.find(params[:id])
-  erb :'/questions/_question_comment_form'
-end
-
-get '/answers/:id/comment/new' do
-  require_user
-  @answer= Answer.find(params[:id])
-  erb :'/answers/_answer_comment_form'
+  if request.xhr?
+    erb :'/questions/_question_comment_form', layout: false
+  else
+    erb :'/questions/_question_comment_form'
+  end
 end
 
 post '/questions/:id/comment' do
   @comment= Comment.new(params[:comment])
   if @comment.save
-    redirect "/questions/#{params[:id]}"
+    if request.xhr?
+      erb :'_comment_display', locals: { comment: @comment }, layout: false
+    else
+      redirect "/questions/#{params[:id]}"
+    end
   else
     @errors= @comment.errors.full_messages
     erb :'/questions/_question_comment_form'
+  end
+end
+
+get '/answers/:id/comment/new' do
+  require_user
+  @answer= Answer.find(params[:id])
+  if request.xhr?
+    erb :'/answers/_answer_comment_form', layout: false
+  else
+    erb :'/answers/_answer_comment_form'
   end
 end
 
@@ -25,7 +37,11 @@ post '/answers/:id/comment' do
   question_id= Answer.find(params[:id]).question.id
 
   if @comment.save
-    redirect "/questions/#{question_id}"
+    if request.xhr?
+      erb :'_comment_display', locals: {comment: @comment}, layout: false
+    else
+      redirect "/questions/#{question_id}"
+    end
   else
     @errors= @comment.errors.full_messages
     erb :'/answers/_answer_comment_form'
