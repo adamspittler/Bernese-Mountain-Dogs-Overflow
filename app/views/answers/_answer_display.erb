@@ -40,7 +40,7 @@
 
         <ul class="some_padding">
           <% answer.comments.each do |comment| %>
-            <li class="listing"><%=comment.text%><br> By: <a class="link" href="/users/<%=comment.user.id%>"><%=comment.user.username%></a> on <%=long_form_date(comment.created_at)%></li><br>
+            <%= erb :'_comment_display', locals: {comment: comment }%>
           <% end %>
         </ul>
       <br>
