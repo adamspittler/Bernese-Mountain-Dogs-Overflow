@@ -15,16 +15,20 @@ end
 
 post '/answers' do
   answer=Answer.new(params[:answer])
-  question=Question.find(answer.question_id)
-  if request.xhr?
-    answer
-  end
+  @question=Question.find(answer.question_id)
+  @best_values = @question.answers.map { |answer| answer.best }
+
   if answer.save
-    redirect "/questions/#{question.id}"
+    if request.xhr?
+    erb :'answers/_answer_display', locals: { answer: answer, question: @question, best_value: @best_values}, layout: false
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
     @error=answer.errors.full_messages
     erb :'/answers/create'
   end
+
 end
 
 get '/answers/:id/edit' do
@@ -34,7 +38,7 @@ get '/answers/:id/edit' do
 end
 
 get '/answers/:id/upvote' do
-  require_user
+  # require_user
   answer=Answer.find(params[:id])
   question_id= answer.question.id
 
@@ -47,7 +51,7 @@ get '/answers/:id/upvote' do
 end
 
 get '/answers/:id/downvote' do
-  require_user
+  # require_user
   answer=Answer.find(params[:id])
   question_id= answer.question.id
   vote= Vote.create(user_id: current_user.id, value: -1, votable_type: "Answer", votable_id: params[:id])

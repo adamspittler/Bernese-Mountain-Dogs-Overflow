@@ -54,60 +54,11 @@
 
 
   <h2> Answers </h2>
-  <ul>
+  <ul id="answer_list">
 
     <% @question.answers.sort_by{ |answer| answer.best ? 0 : 1}.each do |answer| %>
 
-    <li class="listing">
-
-    <div class="the_vote_buttons">
-    <div class="answer_upvote">
-      <a href="/answers/<%=answer.id%>/upvote"><img class="vote_button" src="/images/upvote.jpg"></a>
-    </div>
-    <div class="vote_count">
-      <%=answer.total_votes%>
-    </div>
-    <div class="answer_downvote">
-      <a href="/answers/<%=answer.id%>/downvote"><img class="vote_button" src="/images/downvote.jpg"></a>
-    </div>
-  </div>
-
-    <div class="question_field">
-      <% if answer.best %>
-        <p>Best Answer!</p><br>
-      <% end %>
-    <%=answer.text%><br><br> By: <a class="link" href="/users/<%=answer.user.id%>"><%=answer.user.username%></a> Answered on: <%=long_form_date(answer.created_at)%>
-
-      <% if current_user.id == @question.user_id && @best_values.exclude?(true) %>
-
-        <a class="button some_margin" href="/answers/<%=answer.id %>/best">Mark as best answer</a>
-
-      <% end %>
-
-
-      <% if current_user && current_user.id == answer.user_id %>
-        <ul class="some_padding">
-          <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li><br>
-          <li class="link">
-            <form method="post" action="/answers/<%= answer.id %>" class="inline">
-            <input type="hidden"  name="_method" value="delete">
-            <input type="submit" class="button" value="delete">
-            </form></li>
-        </ul>
-        <% end %>
-
-        <ul class="some_padding">
-          <% answer.comments.each do |comment| %>
-            <li class="listing"><%=comment.text%><br> By: <a class="link" href="/users/<%=comment.user.id%>"><%=comment.user.username%></a> on <%=long_form_date(comment.created_at)%></li><br>
-          <% end %>
-        </ul>
-      <br>
-    <%if !answer.comments.empty? %>
-      <a class="button some_margin" href="/answers/<%=answer.id%>/comment/new">Comment</a>
-    <br><br>
-    <% end %>
-      </div>
-      </li>
+      <%= erb :'answers/_answer_display', locals: { answer: answer, question: @question, best_value: @best_values} %>
     <% end %>
 
   </ul>

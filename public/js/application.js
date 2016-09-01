@@ -19,7 +19,8 @@ $(document).ready(function(){
       data: $(event.target).serialize()
 
     }).done(function(response){
-
+      $('#answer_list').append(response);
+      $(event.target).hide();
     });
   });
 
