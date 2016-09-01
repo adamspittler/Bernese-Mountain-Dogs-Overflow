@@ -3,8 +3,13 @@
 
   <ul>
     <% @questions.each do |question| %>
-      <li><a class="link" href="/questions/<%=question.id%>"><%=question.title%></a><br> <%=stub(question.text)%><br> Asked on <%=long_form_date(question.created_at)%> by <a class="link" href="/users/<%=question.user.id%>"><%=question.user.username%></a></li><br>
+      <li class="listing"><a class="link much_bigger_text" href="/questions/<%=question.id%>"><%=question.title%></a><br> <span class="bigger_text"><%=stub(question.text)%></span><br><br> Asked on <%=long_form_date(question.created_at)%> by <a class="link" href="/users/<%=question.user.id%>"><%=question.user.username%></a><br>
+        Total Votes: <%=question.total_votes%> Total Answers: <%=question.answers.length%>
+      </li><br>
     <% end %>
   </ul>
 
+  <div>
+    <img class="puppies" src="/images/puppies.jpg">
+  </div>
 </div>

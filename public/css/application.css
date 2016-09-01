@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 60%;
   display: block;
   margin: auto;
 }
@@ -65,22 +65,28 @@ li {
   padding-left: 10px;
 }
 .listing {
+  padding-top: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid black;
 }
 
 .vote_button {
   padding-top: 5px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
 }
 .the_vote_buttons{
   vertical-align: top;
   display: inline-block;
-  width: 15%;
+  width: 10%;
 }
 .vote_count {
-  width: 80px;
+  width: 60px;
   text-align: center;
+}
+
+.some_padding {
+  padding-top: 20px;
 }
 
 .no_padding {
@@ -91,7 +97,25 @@ li {
   margin-left: 38px;
 }
 
+.much_bigger_text {
+  font-size: 1.5em;
+}
+
+.bigger_text {
+  font-size: 1.2em;
+  color: #620CE8;
+}
+
 .question_field {
+  padding-top: 5px;
   display: inline-block;
   width: 70%;
+}
+
+.puppies {
+  display: block;
+  margin: auto;
+  width: 90%;
+  height: 70%;
+  padding-bottom: 30px;
 }
