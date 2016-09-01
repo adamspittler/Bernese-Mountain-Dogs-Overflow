@@ -1,4 +1,4 @@
-<li class="listing">
+<li id="<%= answer.id %>" class="listing individual_answer">
 
     <div class="the_vote_buttons">
     <div class="answer_upvote">
@@ -29,14 +29,16 @@
 
       <% if current_user && current_user.id == answer.user_id %>
         <ul class="some_padding">
-          <li class="link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li><br>
+          <li class="answer_edit link"><a class="button" href="/answers/<%= answer.id %>/edit">edit</a></li><br>
 
-            <div class="answer_editing"></div>
-            <li class="link">
-            <form method="post" action="/answers/<%= answer.id %>" class="inline">
-            <input type="hidden"  name="_method" value="delete">
-            <input type="submit" class="button" value="delete">
-            </form></li>
+          <div class="answer_editing"></div>
+          <li id="delete_button" class="link">
+            <form class="delete-answer-form" method="post" action="/answers/<%= answer.id %>" class="inline">
+              <input type="hidden"  name="_method" value="delete">
+              <input type="submit" class="button" value="delete">
+            </form>
+          </li>
+
         </ul>
         <% end %>
 

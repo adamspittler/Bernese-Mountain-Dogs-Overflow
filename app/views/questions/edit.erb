@@ -14,10 +14,10 @@
   <input type="hidden" name="_method" value="put">
 
   <label for="title-input" class="block">Title:</label><br>
-  <input id="title-input" name="question[title]" type="text" value="<%= @question.try(:title) %>" class="block"><br>
+  <input id="title-input" value="<%=@question.title%>" name="question[title]" type="text" value="<%= @question.try(:title) %>" class="block"><br>
 
   <label for="body-textarea" class="block">Text:</label><br>
-  <textarea id="body-textarea" rows="10" cols="50" name="question[text]" class="block"><%= @question.try(:text) %></textarea><br>
+  <textarea id="body-textarea" rows="10" cols="50" name="question[text]" class="block"><%=@question.text%></textarea><br>
 
     <input type="hidden" name="question[user_id]" value="<%= session[:user_id] %>"  >
 

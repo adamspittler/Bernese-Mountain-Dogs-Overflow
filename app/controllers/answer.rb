@@ -34,7 +34,11 @@ end
 get '/answers/:id/edit' do
   require_user
   @answer= Answer.find(params[:id])
-  erb :'/answers/edit'
+  if request.xhr?
+     erb :'/answers/edit', layout: false
+  else
+    erb :'/answers/edit'
+  end
 end
 
 get '/answers/:id/upvote' do
@@ -65,11 +69,17 @@ end
 put '/answers/:id' do
   halt(404, erb(:'404')) unless login?
 
-  @answer = Answer.find(params[:id])
-  @answer.assign_attributes(params[:answer])
 
+  @answer = Answer.find(params[:id])
+  @question=Question.find(@answer.question_id)
+  @best_values = @question.answers.map { |answer| answer.best }
+  @answer.assign_attributes(params[:answer])
   if @answer.save
-    redirect "questions/#{@answer.question_id}"
+    if request.xhr?
+      erb :'answers/_answer_display', locals: { answer: @answer, question: @question, best_value: @best_values}, layout: false
+    else
+      redirect "questions/#{@answer.question_id}"
+    end
   else
     @errors = @answer.errors.full_messages
     erb :'answers/edit'
@@ -79,8 +89,12 @@ end
 delete '/answers/:id' do
   require_user
   @answer = Answer.find(params[:id])
-  @answer.destroy
-  redirect "/questions/#{@answer.question_id}"
+  deleted = @answer.destroy
+  if request.xhr?
+    deleted.id.to_s
+  else
+    redirect "/questions/#{@answer.question_id}"
+  end
 end
 
 get '/answers/:id/best' do

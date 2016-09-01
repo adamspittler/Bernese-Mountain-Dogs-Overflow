@@ -1,11 +1,11 @@
 <% if current_user.id == @answer.user_id %>
 <div class="container">
-  <form method="post" action="/answers/<%=@answer.id%>">
+  <form class="answering_editing" method="post" action="/answers/<%=@answer.id%>">
     <input type="hidden" name="_method" value="put">
     <label for="answer">Edit Your Answer:</label><br>
     <textarea rows="10" cols="50" name="answer[text]"><%=@answer.text%></textarea><br><br>
 
-    <input type="submit" value="Edit" class="button">
+    <input type="submit" value="Edit Answer" class="button">
 </div>
 
 <%= erb :'_error' %>
