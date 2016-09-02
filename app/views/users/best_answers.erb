@@ -1,0 +1,13 @@
+<div class="container"><br>
+  <%= @user.username %>'s best answers:
+
+  <ul>
+    <% @answers.each do |answer| %>
+      <% if answer.best %>
+        <li><%= answer.text %><br>
+          <a href="/question/<%= answer.question.id %>"><%= answer.question.title %></a><br><br>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

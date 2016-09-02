@@ -50,7 +50,12 @@ get '/users/:id' do
   erb :'/users/show'
 end
 
+get '/users/:id/bestanswers' do
+  @user = User.find(params[:id])
+  @answers = @user.answers
 
+  erb :'users/best_answers'
+end
 
 
 
