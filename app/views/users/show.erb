@@ -1,6 +1,6 @@
 <div class="container">
   <h2 id="profile_name"> <%= @user.username %>'s Page </h2><br>
-  <div id="number_of_best_answers"><a href='/users/<%=@user.id%>/bestanswers'><%= @best_answer_count %></a> best answers</div>
+  <div id="number_of_best_answers"><a class="link" href='/users/<%=@user.id%>/bestanswers'><%= @best_answer_count %></a> best answers</div>
 
   <h3> Questions <%=@user.username%> Has Asked </h3>
   <div class="question_container">

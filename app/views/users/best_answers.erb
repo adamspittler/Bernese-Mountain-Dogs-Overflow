@@ -5,7 +5,7 @@
     <% @answers.each do |answer| %>
       <% if answer.best %>
         <li><%= answer.text %><br>
-          <a href="/question/<%= answer.question.id %>"><%= answer.question.title %></a><br><br>
+          <a href="/questions/<%= answer.question.id %>"><%= answer.question.title %></a><br><br>
         </li>
       <% end %>
     <% end %>
