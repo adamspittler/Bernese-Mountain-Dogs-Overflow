@@ -1,7 +1,7 @@
 <div class="container">
   <h1><%= @question.title %></h1>
 
-  <span class="question-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@question.created_at)} by"%> <a href="/users/<%= @question.user.id %>"><%=@question.user.username%></a>, <%= @question.user.breed %></span>
+  <span class="question-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@question.created_at)} by"%> <a class="link" href="/users/<%= @question.user.id %>"><%=@question.user.username%></a>, <%= @question.user.breed %></span>
 
   <p><%= @question.text %></p>
 
