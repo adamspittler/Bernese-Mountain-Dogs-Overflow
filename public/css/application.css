@@ -72,8 +72,8 @@ li {
 
 .vote_button {
   padding-top: 5px;
-  width: 60px;
-  height: 60px;
+  width: 150px;
+  height: 150px;
 }
 .the_vote_buttons{
   vertical-align: top;
@@ -118,4 +118,28 @@ li {
   width: 90%;
   height: 70%;
   padding-bottom: 30px;
+}
+
+#dog_cover_image {
+    position: fixed;
+    top: 570px;
+    right: -34px;
+    height:630px;
+    width: 590px;
+}
+.fa-paw {
+  padding-top: 15px;
+
+}
+
+.answer_downvote {
+  transform: rotate(180deg);
+  position: relative;
+  left: -97px;
+}
+
+.downvote {
+  transform: rotate(180deg);
+  position: relative;
+  left: -99px;
 }
